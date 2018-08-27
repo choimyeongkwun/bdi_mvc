@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jsp"%>
 <body>
-<c:if test="${!empty rMap}">
+<c:if test="${!empty rUser}">
 <script>
 	alert('${rMap.msg}');
 	if('${rMap.success}' =='true'){

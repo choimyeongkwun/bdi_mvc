@@ -10,5 +10,6 @@ public interface UserDAO {
 	public int insertUser(User us);
 	public int updateUser(User us);
 	public int deleteMaker(User us);
+	public int updateUserTotal(int uino);
 	
 }

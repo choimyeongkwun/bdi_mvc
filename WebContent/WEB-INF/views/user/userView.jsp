@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jsp"%>
-<c:if test="${!empty rMap}">
+<c:if test="${!empty rUSer}">
 	<script>
-		alert('${rMap.msg}');
-		if ('${rMap.success}' == 'true') {
+		alert('${rUSer.msg}');
+		if ('${rUSer.success}' == 'true') {
 			location.href = "/user/userList";
 		}
 	</script>
