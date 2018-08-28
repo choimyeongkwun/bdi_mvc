@@ -4,8 +4,8 @@
 <body>
 <c:if test="${!empty rUser}">
 <script>
-	alert('${rMap.msg}');
-	if('${rMap.success}' =='true'){
+	alert('${rUser.msg}');
+	if('${rUSer.success}' =='true'){
 		location.href="/user/userList";
 	}
 </script>
