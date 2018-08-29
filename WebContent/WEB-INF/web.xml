@@ -28,14 +28,22 @@
     <servlet-name>MakerServlet</servlet-name>
     <url-pattern>/maker/*</url-pattern>
   </servlet-mapping>
-	<servlet>
-	<servlet-name>DepartServlet</servlet-name>
-	<servlet-class>com.bdi.mvc.servlet.DepartServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	<servlet-name>DepartServlet</servlet-name>
-	<url-pattern>/depart/*</url-pattern>
-	</servlet-mapping>
+  <servlet>
+    <servlet-name>DepartServlet</servlet-name>
+    <servlet-class>com.bdi.mvc.servlet.DepartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DepartServlet</servlet-name>
+    <url-pattern>/depart/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>GameServlet</servlet-name>
+  	<servlet-class>com.bdi.mvc.servlet.GameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GameServlet</servlet-name>
+  	<url-pattern>/game/*</url-pattern>
+  </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/views/error/notFound.jsp</location>

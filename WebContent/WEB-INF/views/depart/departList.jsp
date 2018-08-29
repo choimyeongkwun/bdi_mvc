@@ -16,7 +16,7 @@
 		<c:forEach items="${departList}" var="d">
 			<tr>
 				<td>${d.diNo}</td>
-				<td>${d.diName}</td>
+				<td><a href="/depart/departView?diNo=${d.diName}">${d.diName }</a></td>
 				<td>${d.diDesc}</td>
 				<td>${d.diCnt}</td>
 			</tr>

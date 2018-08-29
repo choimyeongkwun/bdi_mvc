@@ -23,8 +23,11 @@ public class DepartServlet extends HttpServlet {
 		if(cmd.equals("departList")) {
 			uri = "/views" + uri;
 			request.setAttribute("departList",ds.selectDepartList(null));
-		}else {
-			
+		}else if(cmd.equals("departView") ||cmd.equals("departUpdate")){
+			String diNoStr = request.getParameter("diNo");
+			Depart depart = new Depart();
+			depart.setDiNo(Integer.parseInt(diNoStr));
+			request.setAttribute("depart", ds.selectDepart(depart));
 		}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -45,6 +48,11 @@ public class DepartServlet extends HttpServlet {
 			String diDesc= request.getParameter("diDesc");
 			Depart depart = new Depart(null, diName,diDesc , null);
 			request.setAttribute("rMap", ds.insertDepart(depart));
+		}else if(cmd.equals("departUpdate")) {
+			
+		}else if(cmd.equals("departDelete")) {
+			Depart depart = new Depart(Integer.parseInt(request.getParameter("doNo")),null,null,null);
+			request.setAttribute("rMap",ds.deleteDepart(depart));
 		}
 		}catch(SQLException e) {
 			e.printStackTrace();
