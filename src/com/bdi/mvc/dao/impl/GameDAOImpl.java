@@ -17,7 +17,7 @@ public class GameDAOImpl implements GameDAO {
 	
 	@Override
 	public void setConnection(Connection con) {
-		// TODO Auto-generated method stub
+
 		this.con=con;
 	}
 
@@ -29,9 +29,9 @@ public class GameDAOImpl implements GameDAO {
 				ps = con.prepareStatement(sql);
 				rs = ps.executeQuery();
 			while(rs.next()) {
-				Game gm = new Game(rs.getInt("gcNo"),rs.getString("gcName"),
-						rs.getInt("gcPrice"),rs.getString("gcvender"),
-						rs.getInt("geOrder"),rs.getString("gcDesc"),rs.getString("gcImg"));
+				Game gm = new Game(rs.getInt("gcNum"),rs.getString("gcName"),
+						rs.getInt("gcPrice"),rs.getString("gcVendor"),
+						rs.getInt("gcOrder"),rs.getString("gcDesc"),rs.getString("gcImg"));
 				gameList.add(gm);
 			}
 			}catch(SQLException e) {
@@ -42,15 +42,16 @@ public class GameDAOImpl implements GameDAO {
 
 	@Override
 	public Game selectGame(Game game) throws SQLException {
-		String sql = "select * from game_chart where gcNo=?";
+		String sql = "select * from game_chart where gcNum=?";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, game.getGcNum());
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				Game gm = new Game(rs.getInt("gcNo"),rs.getString("gcName"),
-						rs.getInt("gcPrice"),rs.getString("gcVender"),
-						rs.getInt("gcOrder"),rs.getString("gcDesc"),rs.getString("gcImg"));
-				return gm;
+			if(rs.next()) {
+				return new Game(rs.getInt("gcNum"), rs.getString("gcName"),
+						rs.getInt("gcPrice"), rs.getString("gcVendor"),
+						rs.getInt("gcOrder"), rs.getString("gcDesc"),
+						rs.getString("gcImg"));
 			}
 			}catch(SQLException e) {
 				throw e;
@@ -60,19 +61,45 @@ public class GameDAOImpl implements GameDAO {
 
 	@Override
 	public int insertGame(Game game) throws SQLException {
-		String sql = "insert into Game_chart(gcName,gcVender,gcDesc,gcImg)";
-		sql +=" values(?,?,?,?)";
+		String sql = "insert into game_chart(gcName,gcVendor,gcDesc,gcImg) values(?,?,?,?)";
 		try {
 			ps=con.prepareStatement(sql);
 			ps.setString(1, game.getGcName());
-			ps.setString(2, game.getGcvender());
+			ps.setString(2, game.getGcVendor());
 			ps.setString(3, game.getGcDesc());
 			ps.setString(4, game.getGcImg());
 			return ps.executeUpdate();
-		
 		}catch(SQLException e) {
 			throw e;
 		}
 	}
+
+	@Override
+	public int updateGame(Game game) throws SQLException {
+		String sql = "update game_chart set gcName=?,gcVendor=?,gcDesc=?,gcImg=? where gcNum=?";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setString(1, game.getGcName());
+			ps.setString(2, game.getGcVendor());
+			ps.setString(3, game.getGcDesc());
+			ps.setString(4, game.getGcImg());
+			ps.setInt(5, game.getGcNum());
+			return ps.executeUpdate();
+		}catch(SQLException e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public int deleteGame(Game game) throws SQLException {
+		String sql = "delete from game_chart where gcNum=?";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, game.getGcNum());
+			return ps.executeUpdate();
+		}catch(SQLException e) {
+			throw e;
+		}
 				
 			}
+}

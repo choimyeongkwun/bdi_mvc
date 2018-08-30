@@ -16,10 +16,21 @@
 			</tr>
 		</thead>
 		<tbody>
+		<c:forEach items="${gameList}" var="game">
+			<tr>
+				<td>${game.gcNum}</td>
+				<td><a href="/game/gameView?gcNum=${game.gcNum}">${game.gcName}</a></td>
+				<td>${game.gcPrice}</td>
+				<td>${game.gcVendor}</td>
+				<td>${game.gcOrder}</td>
+				<td>${game.gcDesc}</td>
+				<td>${game.gcImg}</td>
+			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 	<div>
-		<button data-page="/views/game/gameList">게임 등록</button>
+		<button data-page="/views/game/gameInsert">게임 등록</button>
 	</div>
 </div>
 </body>

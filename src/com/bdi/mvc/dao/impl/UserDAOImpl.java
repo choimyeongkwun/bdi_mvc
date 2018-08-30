@@ -95,7 +95,7 @@ public class UserDAOImpl implements UserDAO {
 	public int insertUser(User us) {
 		Connection con = DBCon.getCon();
 		PreparedStatement ps = null;
-		String sql = "select uiNo, uiName, uiId, uiPwd, uiDesc, uiAge, diNo)";
+		String sql = "insert uiNo, uiName, uiId, uiPwd, uiDesc, uiAge, diNo)";
 		sql += "values(?,?,?,?,?)";
 		int cnt =0;
 		try {

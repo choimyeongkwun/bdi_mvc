@@ -29,7 +29,7 @@ public class GameServiceImpl implements GameService {
 	public Map<String, Object> insertGame(Game game) throws SQLException {
 		gdao.setConnection(DBCon.getCon());
 		try {
-			int cnt =gdao.insertGame(game);
+			int cnt = gdao.insertGame(game);
 			Map<String,Object> rMap = new HashMap<String,Object>();
 			rMap.put("cnt", cnt);
 			rMap.put("msg", "저장이 실패했어여");
@@ -43,5 +43,52 @@ public class GameServiceImpl implements GameService {
 			DBCon.close();
 		}
 	}
+	@Override
+	public Game selectGame(Game game) throws SQLException {
+		gdao.setConnection(DBCon.getCon());
+		try {
+				return gdao.selectGame(game);
+		}catch(SQLException e) {
+			throw e;
+		}finally {
+			DBCon.close();
+		}
+	}
+	@Override
+	public Map<String, Object> updateGame(Game game) throws SQLException {
+		gdao.setConnection(DBCon.getCon());
+		try {
+			int cnt = gdao.updateGame(game);
+			Map<String,Object> rMap = new HashMap<String,Object>();
+			rMap.put("cnt", cnt);
+			rMap.put("msg", "수정이 실패했어요");
+			if(cnt==1) {
+				rMap.put("msg", "수정 성공했어요~~");
+			}
+			return rMap;
+		}catch(SQLException e) {
+			throw e;
+		}finally {
+			DBCon.close();
+		}
+	}
+	@Override
+	public Map<String, Object> deleteGame(Game game) throws SQLException {
+		gdao.setConnection(DBCon.getCon());
+		try {
+			int cnt = gdao.deleteGame(game);
+			Map<String,Object> rMap = new HashMap<String,Object>();
+			rMap.put("cnt", cnt);
+			rMap.put("msg", "삭제 실패했어요");
+			if(cnt==1) {
+				rMap.put("msg", "삭제 성공했어요~~");
+			}
+			return rMap;
+		}catch(SQLException e) {
+			throw e;
+		}finally {
+			DBCon.close();
+		}
 
+}
 }

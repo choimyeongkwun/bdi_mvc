@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 		rUser.put("success","false");
 		if(udao.insertUser(us)==2) {
 			rUser.put("msg","정상적으로 등록 되었습니다.");
-			rUser.put("success","trus");
+			rUser.put("success","true");
 		}
 		return rUser;
 	}

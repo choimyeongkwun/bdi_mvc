@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<form action="/depart/departDepete" method ="post">
+				<form action="/depart/departDelete" method ="post">
 				<button data-page="/depart/departUpdate?dino=${d.diNo}">수정</button>
 				 <button>삭제</button>
 				 <input type="hidden" name="diNo" value="${d.diNo}">
